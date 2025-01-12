@@ -27,12 +27,14 @@ Maven
 
 データベースとユーザーの作成：
 
-sqlCopyCREATE ROLE todo_user LOGIN PASSWORD 'todo_pass';
+sql
+CREATE ROLE todo_user LOGIN PASSWORD 'todo_pass';
 CREATE DATABASE todo_db WITH OWNER = todo_user;
 
 テーブルの作成：
 
-sqlCopyCREATE TABLE todo_items(
+sql
+CREATE TABLE todo_items(
     id serial,
     title varchar(40),
     done_flg numeric(1) default 0,
@@ -40,7 +42,8 @@ sqlCopyCREATE TABLE todo_items(
 );
 アプリケーションの設定
 application.propertiesにデータベース接続情報を設定：
-propertiesCopyspring.datasource.driver-class-name=org.postgresql.Driver
+properties
+spring.datasource.driver-class-name=org.postgresql.Driver
 spring.datasource.url=jdbc:postgresql://localhost:5432/todo_db
 spring.datasource.username=todo_user
 spring.datasource.password=todo_pass
@@ -52,7 +55,7 @@ Mavenでビルド：mvn clean install
 アクセス：http://localhost:8080
 
 プロジェクト構成
-Copysrc/main/java/com/todo/app/
+src/main/java/com/todo/app/
 ├── controller/
 │   └── TodoController.java
 ├── entity/
@@ -71,11 +74,3 @@ GET / - ToDoリストの表示
 POST /add - 新規ToDo追加
 POST /update - ToDo更新
 POST /delete - 完了済みToDoの削除
-
-学習のポイント
-このプロジェクトは以下の手順で学習することをお勧めします：
-
-基本環境の構築
-データベース操作の実装
-ビュー層の開発
-機能の段階的な追加
